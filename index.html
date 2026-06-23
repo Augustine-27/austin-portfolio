@@ -1,0 +1,481 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Chikezie Augustine Agu — Data Analyst & Developer</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="style.css" />
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav id="navbar">
+    <div class="nav-inner">
+      <a href="#home" class="nav-logo">CAA<span class="accent">.</span></a>
+      <ul class="nav-links">
+        <li><a href="#about">About</a></li>
+        <li><a href="#projects">Projects</a></li>
+        <li><a href="#skills">Skills</a></li>
+        <li><a href="#cv">CV</a></li>
+        <li><a href="#contact" class="nav-cta">Hire Me</a></li>
+      </ul>
+      <button class="nav-toggle" aria-label="Toggle menu">
+        <span></span><span></span><span></span>
+      </button>
+    </div>
+  </nav>
+
+  <!-- HERO -->
+  <section id="home" class="hero">
+    <div class="hero-inner">
+      <div class="hero-terminal">
+        <div class="terminal-bar">
+          <span class="dot red"></span>
+          <span class="dot yellow"></span>
+          <span class="dot green"></span>
+          <span class="terminal-title">Chikezie@portfolio ~ </span>
+        </div>
+        <div class="terminal-body">
+          <p class="terminal-line"><span class="prompt">$</span> whoami</p>
+          <p class="terminal-output" id="typed-name"></p>
+          <p class="terminal-line mt"><span class="prompt">$</span> cat roles.txt</p>
+          <p class="terminal-output" id="typed-roles"></p>
+          <p class="terminal-line mt"><span class="prompt">$</span> cat location.txt</p>
+          <p class="terminal-output" id="typed-location"></p>
+          <p class="terminal-cursor-line"><span class="prompt">$</span> <span class="cursor-blink">█</span></p>
+        </div>
+      </div>
+      <div class="hero-text">
+        <p class="hero-eyebrow">Portfolio & CV</p>
+        <h1 class="hero-name">Chikezie<br/><span class="accent">Augustine</span><br/>Agu</h1>
+        <p class="hero-tagline">Turning raw data into decisions.<br/>Building the web that displays them.</p>
+        <div class="hero-actions">
+          <a href="#projects" class="btn-primary">View My Work</a>
+          <a href="#cv" class="btn-ghost">Download CV</a>
+        </div>
+        <div class="hero-badges">
+          <span class="badge">📊 Data Analytics</span>
+          <span class="badge">🌐 Web Development</span>
+          <span class="badge">🤝 Virtual Assistant & Technical Support</span>
+        </div>
+      </div>
+    </div>
+    <div class="hero-scroll">
+      <span>Scroll</span>
+      <div class="scroll-line"></div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about" class="section">
+    <div class="container">
+      <p class="section-eyebrow">Who I Am</p>
+      <h2 class="section-title">About Me</h2>
+      <div class="about-grid">
+        <div class="about-text">
+          <p>I'm a Data Analytics professional and aspiring Full-Stack Developer based in Port Harcourt, Nigeria. I hold a <strong>B.Sc. in Applied Statistics</strong> and a <strong>Diploma in Computer Studies & Management</strong>, and I currently work as a Data Analytics Assistant Intern at Lily Hospitals Ltd.</p>
+          <p>My analytical work spans healthcare branch performance reporting across 7+ branches — producing executive-level narrative reports that go beyond numbers to explain <em>why</em> metrics move, not just what they are. That skill — turning data into a story management can act on — is what makes me different.</p>
+          <p>On the development side, I'm actively building full-stack skills through a structured 18-month roadmap covering HTML/CSS, Python/Django, and DevOps. My live project, <strong>Augere Rentals</strong>, is a Django-based rental property web application.</p>
+          <p>I also offer Virtual Assistant services — combining administrative precision, technical support expertise, and strong written communication for remote clients worldwide.</p>
+        </div>
+        <div class="about-stats">
+          <div class="stat-card">
+            <span class="stat-num">7<span class="accent">+</span></span>
+            <span class="stat-label">Branches Reported On</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">4<span class="accent">+</span></span>
+            <span class="stat-label">Report Types Produced</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">3<span class="accent">+</span></span>
+            <span class="stat-label">Years Experience</span>
+          </div>
+          <div class="stat-card">
+            <span class="stat-num">5<span class="accent">+</span></span>
+            <span class="stat-label">Role Specialisations</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROJECTS -->
+  <section id="projects" class="section section-alt">
+    <div class="container">
+      <p class="section-eyebrow">What I've Built</p>
+      <h2 class="section-title">Projects</h2>
+      <div class="filter-tabs">
+        <button class="filter-btn active" data-filter="all">All</button>
+        <button class="filter-btn" data-filter="analytics">Analytics</button>
+        <button class="filter-btn" data-filter="dev">Development</button>
+        <button class="filter-btn" data-filter="va">VA / Admin</button>
+      </div>
+      <div class="projects-grid" id="projects-grid">
+
+        <div class="project-card" data-category="analytics">
+          <div class="project-tag">Data Analytics</div>
+          <h3 class="project-title">Healthcare Branch Performance Reports</h3>
+          <p class="project-desc">Recurring executive-level reports for Lily Hospitals Ltd covering outpatient, diagnostic, pharmacy, and inpatient metrics across 7+ branches. Includes YoY, YTD, and trailing 6M/12M period comparisons with narrative causal analysis.</p>
+          <div class="project-tech">
+            <span>Microsoft Excel</span>
+            <span>Microsoft Word</span>
+            <span>SUMIFS</span>
+            <span>Pivot Tables</span>
+            <span>Variance Analysis</span>
+          </div>
+          <div class="project-links">
+            <span class="project-note">📁 Available on request</span>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="analytics">
+          <div class="project-tag">Data Analytics</div>
+          <h3 class="project-title">Multi-Branch Clinical Performance Model</h3>
+          <p class="project-desc">Excel-based comparison models using SUMIFS, growth rate formulas, and custom number formatting to benchmark 7 branches across multiple time periods. Produced charts and visualisations for management presentations.</p>
+          <div class="project-tech">
+            <span>Excel Modelling</span>
+            <span>SUMIFS</span>
+            <span>Growth Formulas</span>
+            <span>Data Visualisation</span>
+          </div>
+          <div class="project-links">
+            <span class="project-note">📁 Available on request</span>
+          </div>
+        </div>
+
+        <div class="project-card featured" data-category="dev">
+          <div class="project-tag tag-dev">Web Development</div>
+          <div class="featured-label">🔥 Active Project</div>
+          <h3 class="project-title">Augere Rentals — Rental Property Platform</h3>
+          <p class="project-desc">A full Django-based rental property web application with property listings, detail views, media handling, template inheritance, and URL routing. Built as part of an 18-month full-stack development roadmap.</p>
+          <div class="project-tech">
+            <span>Python</span>
+            <span>Django</span>
+            <span>HTML/CSS</span>
+            <span>SQLite</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="proj-link">In Progress →</a>
+            <a href="#" class="proj-link">GitHub →</a>
+            <!-- <a href="#" class="proj-link">Live Demo →</a> -->
+          </div>
+        </div>
+
+        <div class="project-card" data-category="dev">
+          <div class="project-tag tag-dev">Web Development</div>
+          <h3 class="project-title">Developer Portfolio Website</h3>
+          <p class="project-desc">This website — a dark-theme, fully responsive portfolio and CV site built in plain HTML, CSS, and JavaScript. Designed for easy deployment on GitHub Pages or Netlify with no frameworks or build tools required.</p>
+          <div class="project-tech">
+            <span>HTML5</span>
+            <span>CSS3</span>
+            <span>JavaScript</span>
+            <span>Responsive Design</span>
+          </div>
+          <div class="project-links">
+            <a href="#" class="proj-link">GitHub →</a>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="va">
+          <div class="project-tag tag-va">Virtual Assistant</div>
+          <h3 class="project-title">Executive Document Production</h3>
+          <p class="project-desc">Produced polished Word document reports, letters, and executive summaries from raw datasets and briefs. Handled formatting, proofreading, and stakeholder-ready presentation across multiple client engagements.</p>
+          <div class="project-tech">
+            <span>Microsoft Word</span>
+            <span>Document Formatting</span>
+            <span>Proofreading</span>
+            <span>Report Writing</span>
+          </div>
+          <div class="project-links">
+            <span class="project-note">📁 Samples available on request</span>
+          </div>
+        </div>
+
+        <div class="project-card" data-category="va">
+          <div class="project-tag tag-va">Virtual Assistant</div>
+          <h3 class="project-title">Academic Research Editing</h3>
+          <p class="project-desc">Grammar correction, paraphrasing, and academic restructuring of thesis chapters on malaria research — preserving meaning while improving clarity, flow, and academic tone. Delivered as separate .docx files per chapter.</p>
+          <div class="project-tech">
+            <span>Academic Writing</span>
+            <span>Paraphrasing</span>
+            <span>Research Editing</span>
+            <span>Microsoft Word</span>
+          </div>
+          <div class="project-links">
+            <span class="project-note">📁 Confidential</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- SKILLS -->
+  <section id="skills" class="section">
+    <div class="container">
+      <p class="section-eyebrow">What I Bring</p>
+      <h2 class="section-title">Skills & Tools</h2>
+      <div class="skills-grid">
+        <div class="skill-group">
+          <div class="skill-icon">📊</div>
+          <h3>Data Analytics</h3>
+          <ul>
+            <li>Microsoft Excel — PivotTables, SUMIFS, Charts</li>
+            <li>Variance & Growth Rate Analysis</li>
+            <li>YoY / YTD / Trailing Period Reporting</li>
+            <li>Healthcare Performance Metrics</li>
+            <li>Executive Narrative Report Writing</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <div class="skill-icon">🌐</div>
+          <h3>Development</h3>
+          <ul>
+            <li>HTML5 & CSS3</li>
+            <li>Python & Django</li>
+            <li>Django ORM & Template Engine</li>
+            <li>DevOps Fundamentals (Learning)</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <div class="skill-icon">🤝</div>
+          <h3>Virtual Assistant</h3>
+          <ul>
+            <li>Email & Calendar Management</li>
+            <li>Document Preparation & Formatting</li>
+            <li>Online Research & Data Entry</li>
+            <li>Remote Technical Support</li>
+            <li>Microsoft 365 & Google Workspace</li>
+          </ul>
+        </div>
+        <div class="skill-group">
+          <div class="skill-icon">🔧</div>
+          <h3>Technical Support</h3>
+          <ul>
+            <li>Windows Troubleshooting</li>
+            <li>Remote Desktop (AnyDesk, TeamViewer)</li>
+            <li>Hardware & Software Setup</li>
+            <li>Network Basics & Connectivity</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CV TIMELINE -->
+  <section id="cv" class="section section-alt">
+    <div class="container">
+      <p class="section-eyebrow">My Journey</p>
+      <h2 class="section-title">Curriculum Vitae</h2>
+      <div class="cv-download-bar">
+        <p>Want the full formatted document?</p>
+        <a href="Austin_Agu_CV.docx" download class="btn-primary" id="cv-download">⬇ Download CV (.docx)</a>
+      </div>
+
+      <div class="cv-columns">
+        <!-- Experience -->
+        <div class="cv-col">
+          <h3 class="cv-col-title"><span class="accent">///</span> Experience</h3>
+          <div class="timeline">
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <span class="timeline-date">2026 – Present</span>
+                <h4>Data Analytics Assistant Intern</h4>
+                <p class="timeline-org">Lily Hospitals Ltd</p>
+                <ul class="timeline-bullets">
+                  <li>Multi-branch healthcare performance reporting (7+ branches)</li>
+                  <li>YoY, YTD & trailing period comparisons</li>
+                  <li>Excel modelling — SUMIFS, variance, growth rates</li>
+                  <li>Executive narrative reports for senior management</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <span class="timeline-date">2017 – present</span>
+                <h4>Freelance VA & Technical Support</h4>
+                <p class="timeline-org">Sonik Platinum</p>
+                <ul class="timeline-bullets">
+                  <li>Remote admin support — research</li>
+                  <li>Technical troubleshooting & hardware/software support</li>
+                  <li>Document preparation & data entry</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <span class="timeline-date">2024 – 2026</span>
+                <h4>Manager</h4>
+                <p class="timeline-org">Wholesale Venture</p>
+                <ul class="timeline-bullets">
+                  <li>Operations & inventory management</li>
+                  <li>Sales reporting & performance tracking</li>
+                </ul>
+              </div>
+            </div>
+
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <span class="timeline-date">2023 – 2024</span>
+                <h4>Secondary School Teacher</h4>
+                <p class="timeline-org">Secondary School, Nigeria</p>
+                <ul class="timeline-bullets">
+                  <li>Core subject instruction & student record management</li>
+                </ul>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <!-- Education + Extras -->
+        <div class="cv-col">
+          <h3 class="cv-col-title"><span class="accent">///</span> Education</h3>
+          <div class="timeline">
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <h4>B.Sc. Applied Statistics</h4>
+                <p class="timeline-org">Enugu State University of Science and Technology, Nigeria</p>
+              </div>
+            </div>
+            <div class="timeline-item">
+              <div class="timeline-dot"></div>
+              <div class="timeline-content">
+                <span class="timeline-date">Completed</span>
+                <h4>Diploma in Computer Studies & Management</h4>
+                <p class="timeline-org">Drisoft Computer Training Center, Nigeria</p>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="cv-col-title mt-section"><span class="accent">///</span> Currently Learning</h3>
+          <div class="learning-list">
+            <div class="learning-item">
+              <span class="learning-icon">⚡</span>
+              <div>
+                <strong>Full-Stack Development</strong>
+                <p>HTML/CSS → Python/Django → DevOps (18-month roadmap)</p>
+              </div>
+            </div>
+            <div class="learning-item">
+              <span class="learning-icon">🛠</span>
+              <div>
+                <strong>DevOps Fundamentals</strong>
+                <p>Currently enrolled in structured course</p>
+              </div>
+            </div>
+            <div class="learning-item">
+              <span class="learning-icon">💻</span>
+              <div>
+                <strong>IT Support (Advanced)</strong>
+                <p>Networking, remote support tools, Microsoft 365 Admin</p>
+              </div>
+            </div>
+          </div>
+
+          <h3 class="cv-col-title mt-section"><span class="accent">///</span> Available For</h3>
+          <div class="available-tags">
+            <span>Freelance Analytics</span>
+            <span>Remote VA</span>
+            <span>Healthcare Reporting</span>
+            <span>Data Entry</span>
+            <span>Technical Support</span>
+            <span>Web Development</span>
+            <span>Excel Modelling</span>
+            <span>Report Writing</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CONTACT -->
+  <section id="contact" class="section">
+    <div class="container">
+      <p class="section-eyebrow">Get In Touch</p>
+      <h2 class="section-title">Let's Work Together</h2>
+      <div class="contact-grid">
+        <div class="contact-info">
+          <p class="contact-intro">I'm available for freelance analytics projects, virtual assistant roles, technical support contracts, and web development work. Based in Delta State — working globally.</p>
+          <div class="contact-items">
+            <div class="contact-item">
+              <span class="contact-icon">📍</span>
+              <span>7 Mtn Mast Street, Delta State, Nigeria</span>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">📧</span>
+              <a href="mailto:austineleo0@gmail.com">austineleo0@gmail.com</a>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">💼</span>
+              <a href="https://www.linkedin.com/in/chikezie-agu-32a39b246" target="_blank">LinkedIn Profile</a>
+            </div>
+            <div class="contact-item">
+              <span class="contact-icon">🌐</span>
+              <a href="https://www.upwork.com/freelancers/~01e91159585bcc4ff6" target="_blank">Upwork Profile</a>
+            </div>
+          </div>
+        </div>
+        <form class="contact-form" id="contact-form">
+          <div class="form-group">
+            <label for="name">Your Name</label>
+            <input type="text" id="name" placeholder="e.g. John Smith" required />
+          </div>
+          <div class="form-group">
+            <label for="email">Email Address</label>
+            <input type="email" id="email" placeholder="john@example.com" required />
+          </div>
+          <div class="form-group">
+            <label for="service">Service Needed</label>
+            <select id="service">
+              <option value="">Select a service...</option>
+              <option>Data Analytics & Reporting</option>
+              <option>Virtual Assistant</option>
+              <option>Technical Support</option>
+              <option>Web Development</option>
+              <option>Excel Modelling</option>
+              <option>Other</option>
+            </select>
+          </div>
+          <div class="form-group">
+            <label for="message">Message</label>
+            <textarea id="message" rows="5" placeholder="Tell me about your project..." required></textarea>
+          </div>
+          <button type="submit" class="btn-primary full-width">Send Message</button>
+          <p class="form-note" id="form-status"></p>
+        </form>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="footer">
+    <div class="container">
+      <div class="footer-inner">
+        <p class="footer-logo">CAA<span class="accent">.</span></p>
+        <p class="footer-copy">© 2025 Chikezie Augustine Agu. Built with HTML, CSS & JavaScript.</p>
+        <div class="footer-links">
+          <a href="#about">About</a>
+          <a href="#projects">Projects</a>
+          <a href="#cv">CV</a>
+          <a href="#contact">Contact</a>
+        </div>
+      </div>
+    </div>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
