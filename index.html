@@ -8,8 +8,216 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@300;400;500;600;700&family=Inter:wght@300;400;500;600&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="style.css" />
+  <style>
+    /* ─── PHOTO SLOT ─────────────────────────────────────────────────────── */
+    .about-photo-wrap {
+      display: flex;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .profile-photo-slot {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      max-width: 260px;
+      margin: 0 auto;
+      border-radius: 16px;
+      border: 2px dashed var(--accent);
+      background: var(--bg-card);
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      gap: 0.6rem;
+      color: var(--text-dim);
+      font-family: var(--font-mono);
+      font-size: 0.72rem;
+      letter-spacing: 0.08em;
+      text-align: center;
+      padding: 1.5rem;
+      position: relative;
+      overflow: hidden;
+    }
+
+    /* When you add your photo: replace the div with <img src="images/profile.jpg" alt="Austin" class="profile-photo"> */
+    .profile-photo {
+      width: 100%;
+      aspect-ratio: 1 / 1;
+      max-width: 260px;
+      margin: 0 auto;
+      border-radius: 16px;
+      border: 2px solid var(--accent);
+      object-fit: cover;
+      display: block;
+      box-shadow: 0 0 40px rgba(0,194,203,0.15);
+    }
+
+    .photo-icon {
+      font-size: 2.5rem;
+      opacity: 0.4;
+    }
+
+    .photo-hint {
+      opacity: 0.5;
+      line-height: 1.6;
+    }
+
+    /* ─── ABOUT LAYOUT: 3-col when photo present ─────────────────────────── */
+    .about-grid-full {
+      display: grid;
+      grid-template-columns: 180px 1fr 1fr;
+      gap: 3rem;
+      align-items: start;
+    }
+
+    @media (max-width: 1000px) {
+      .about-grid-full { grid-template-columns: 1fr 1fr; }
+      .about-photo-wrap { grid-column: 1 / -1; flex-direction: row; align-items: flex-start; }
+      .profile-photo-slot, .profile-photo { max-width: 160px; }
+    }
+
+    @media (max-width: 700px) {
+      .about-grid-full { grid-template-columns: 1fr; }
+      .about-photo-wrap { flex-direction: column; align-items: center; }
+    }
+
+    /* ─── PROJECT GALLERY ────────────────────────────────────────────────── */
+    .project-gallery {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 6px;
+      margin-top: 0.5rem;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    .gallery-thumb {
+      aspect-ratio: 16 / 10;
+      object-fit: cover;
+      cursor: zoom-in;
+      display: block;
+      transition: filter 0.2s, transform 0.2s;
+      background: var(--bg);
+    }
+
+    .gallery-thumb:first-child {
+      grid-column: 1 / -1;
+      aspect-ratio: 16 / 9;
+    }
+
+    .gallery-thumb:hover { filter: brightness(1.15); transform: scale(1.02); }
+
+    .gallery-more {
+      position: relative;
+      cursor: zoom-in;
+    }
+
+    .gallery-more .gallery-thumb { width: 100%; height: 100%; }
+
+    .gallery-more-badge {
+      position: absolute;
+      inset: 0;
+      background: rgba(0,194,203,0.55);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-display);
+      font-weight: 700;
+      font-size: 1rem;
+      color: #fff;
+      pointer-events: none;
+    }
+
+    /* ─── LIGHTBOX ───────────────────────────────────────────────────────── */
+    .lightbox {
+      display: none;
+      position: fixed;
+      inset: 0;
+      z-index: 9999;
+      background: rgba(5, 12, 22, 0.95);
+      backdrop-filter: blur(8px);
+      align-items: center;
+      justify-content: center;
+      flex-direction: column;
+      gap: 1rem;
+      padding: 2rem;
+    }
+
+    .lightbox.open { display: flex; }
+
+    .lightbox-img {
+      max-width: min(1100px, 95vw);
+      max-height: 80vh;
+      border-radius: 10px;
+      object-fit: contain;
+      box-shadow: 0 0 80px rgba(0,0,0,0.6);
+    }
+
+    .lightbox-controls {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+    }
+
+    .lb-btn {
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 1.4rem;
+      width: 44px; height: 44px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s, border-color 0.2s;
+    }
+
+    .lb-btn:hover { background: var(--accent); border-color: var(--accent); color: var(--bg); }
+
+    .lb-counter {
+      font-family: var(--font-mono);
+      font-size: 0.75rem;
+      color: var(--text-mute);
+      min-width: 60px;
+      text-align: center;
+    }
+
+    .lb-close {
+      position: absolute;
+      top: 1.5rem; right: 1.5rem;
+      background: var(--bg-card);
+      border: 1px solid var(--border);
+      color: var(--text);
+      font-size: 1.2rem;
+      width: 40px; height: 40px;
+      border-radius: 50%;
+      cursor: pointer;
+      display: flex; align-items: center; justify-content: center;
+      transition: background 0.2s;
+    }
+
+    .lb-close:hover { background: #c0392b; border-color: #c0392b; }
+
+    .lb-caption {
+      font-size: 0.8rem;
+      color: var(--text-mute);
+      font-family: var(--font-mono);
+      text-align: center;
+    }
+  </style>
 </head>
 <body>
+
+  <!-- LIGHTBOX -->
+  <div class="lightbox" id="lightbox" role="dialog" aria-modal="true">
+    <button class="lb-close" id="lb-close" aria-label="Close">✕</button>
+    <img class="lightbox-img" id="lb-img" src="" alt="" />
+    <div class="lightbox-controls">
+      <button class="lb-btn" id="lb-prev" aria-label="Previous">‹</button>
+      <span class="lb-counter" id="lb-counter">1 / 1</span>
+      <button class="lb-btn" id="lb-next" aria-label="Next">›</button>
+    </div>
+    <p class="lb-caption" id="lb-caption"></p>
+  </div>
 
   <!-- NAV -->
   <nav id="navbar">
@@ -74,13 +282,32 @@
     <div class="container">
       <p class="section-eyebrow">Who I Am</p>
       <h2 class="section-title">About Me</h2>
-      <div class="about-grid">
+      <div class="about-grid-full">
+
+        <!-- PHOTO SLOT -->
+        <div class="about-photo-wrap">
+          <!--
+            TO ADD YOUR PHOTO:
+            1. Save your photo as  images/profile.jpg  (or .png / .webp)
+            2. Delete the <div class="profile-photo-slot">...</div> below
+            3. Uncomment the <img> tag below it
+          -->
+          <!-- <div class="profile-photo-slot"> -->
+            <!-- <span class="photo-icon">📷</span>
+            <span class="photo-hint">Add your photo here<br/>(see HTML comment)</span> -->
+          </div>
+          <img src="images/dp.jpeg" alt="Chikezie Augustine Agu" class="profile-photo" />
+        </div>
+
+        <!-- BIO -->
         <div class="about-text">
-          <p>I'm a Data Analytics professional and aspiring Full-Stack Developer based in Port Harcourt, Nigeria. I hold a <strong>B.Sc. in Applied Statistics</strong> and a <strong>Diploma in Computer Studies & Management</strong>, and I currently work as a Data Analytics Assistant Intern at Lily Hospitals Ltd.</p>
-          <p>My analytical work spans healthcare branch performance reporting across 7+ branches — producing executive-level narrative reports that go beyond numbers to explain <em>why</em> metrics move, not just what they are. That skill — turning data into a story management can act on — is what makes me different.</p>
+          <p>I'm a Data Analytics professional and aspiring Full-Stack Developer based in Port Harcourt, Nigeria. I hold a <strong>B.Sc. in Applied Statistics</strong> and a <strong>Diploma in Computer Studies & Management</strong>, and I currently work as a Data Analytics Assistant at a leading multi-branch healthcare group(<strong>Lily Hospitals Ltd</strong>).</p>
+          <p>My analytical work spans healthcare performance reporting across 7+ branches — producing executive-level narrative reports that go beyond numbers to explain <em>why</em> metrics move, not just what they are. That skill — turning data into a story management can act on — is what makes me different.</p>
           <p>On the development side, I'm actively building full-stack skills through a structured 18-month roadmap covering HTML/CSS, Python/Django, and DevOps. My live project, <strong>Augere Rentals</strong>, is a Django-based rental property web application.</p>
           <p>I also offer Virtual Assistant services — combining administrative precision, technical support expertise, and strong written communication for remote clients worldwide.</p>
         </div>
+
+        <!-- STATS -->
         <div class="about-stats">
           <div class="stat-card">
             <span class="stat-num">7<span class="accent">+</span></span>
@@ -99,6 +326,7 @@
             <span class="stat-label">Role Specialisations</span>
           </div>
         </div>
+
       </div>
     </div>
   </section>
@@ -116,10 +344,25 @@
       </div>
       <div class="projects-grid" id="projects-grid">
 
+        <!-- CARD 1: Healthcare Reports -->
         <div class="project-card" data-category="analytics">
           <div class="project-tag">Data Analytics</div>
           <h3 class="project-title">Healthcare Branch Performance Reports</h3>
-          <p class="project-desc">Recurring executive-level reports for Lily Hospitals Ltd covering outpatient, diagnostic, pharmacy, and inpatient metrics across 7+ branches. Includes YoY, YTD, and trailing 6M/12M period comparisons with narrative causal analysis.</p>
+
+          <!-- Gallery -->
+          <div class="project-gallery"
+               data-gallery="reports"
+               data-images='["images/reports/1.png","images/reports/2.png","images/reports/3.png"]'
+               data-captions='["Executive Summary Report — narrative analysis","Clinical metrics page — outpatient & diagnostic KPIs","Performance breakdown — year-on-year comparison"]'>
+            <img class="gallery-thumb" src="images/reports/1.png" alt="Executive summary report" loading="lazy" />
+            <img class="gallery-thumb" src="images/reports/2.png" alt="Clinical metrics" loading="lazy" />
+            <div class="gallery-more">
+              <img class="gallery-thumb" src="images/reports/3.png" alt="Performance breakdown" loading="lazy" />
+              <span class="gallery-more-badge">+1</span>
+            </div>
+          </div>
+
+          <p class="project-desc">Recurring executive-level reports for a leading multi-branch healthcare group covering outpatient, diagnostic, pharmacy, and inpatient metrics across 7+ branches. Includes YoY, YTD, and trailing 6M/12M period comparisons with narrative causal analysis.</p>
           <div class="project-tech">
             <span>Microsoft Excel</span>
             <span>Microsoft Word</span>
@@ -132,14 +375,30 @@
           </div>
         </div>
 
+        <!-- CARD 2: Multi-Branch Clinical Model -->
         <div class="project-card" data-category="analytics">
           <div class="project-tag">Data Analytics</div>
           <h3 class="project-title">Multi-Branch Clinical Performance Model</h3>
-          <p class="project-desc">Excel-based comparison models using SUMIFS, growth rate formulas, and custom number formatting to benchmark 7 branches across multiple time periods. Produced charts and visualisations for management presentations.</p>
+
+          <!-- Gallery -->
+          <div class="project-gallery"
+               data-gallery="structured"
+               data-images='["images/structured/Analysis.png","images/structured/May_Analysis.png","images/structured/Pivot.png","images/structured/1.png","images/structured/2.png","images/structured/3.png","images/structured/4.png"]'
+               data-captions='["Annual branch analysis — outpatient & inpatient KPIs","May-on-May comparison — YoY, YTD, trailing period","Pivot table — monthly outpatient breakdown","Structured data view 1","Structured data view 2","Structured data view 3","Structured data view 4"]'>
+            <img class="gallery-thumb" src="images/structured/Analysis.png" alt="Branch analysis" loading="lazy" />
+            <img class="gallery-thumb" src="images/structured/May_Analysis.png" alt="May comparison" loading="lazy" />
+            <div class="gallery-more">
+              <img class="gallery-thumb" src="images/structured/Pivot.png" alt="Pivot table" loading="lazy" />
+              <span class="gallery-more-badge">+5</span>
+            </div>
+          </div>
+
+          <p class="project-desc">Excel-based comparison models using SUMIFS, growth rate formulas, and custom number formatting to benchmark branches across multiple time periods. Covers out-patient registrations, consultations, lab tests, pharmacy, imaging, and in-patient admissions.</p>
           <div class="project-tech">
             <span>Excel Modelling</span>
             <span>SUMIFS</span>
             <span>Growth Formulas</span>
+            <span>Pivot Tables</span>
             <span>Data Visualisation</span>
           </div>
           <div class="project-links">
@@ -147,10 +406,56 @@
           </div>
         </div>
 
+        <!-- CARD 3: Raw Data & ETL -->
+        <div class="project-card" data-category="analytics">
+          <div class="project-tag">Data Analytics</div>
+          <h3 class="project-title">Raw Data Extraction & Structuring</h3>
+
+          <!-- Gallery -->
+          <div class="project-gallery"
+               data-gallery="rawdata"
+               data-images='["images/rawdata/1.png","images/rawdata/2.png","images/rawdata/3.png","images/rawdata/4.png","images/rawdata/5.png"]'
+               data-captions='["Raw patient records — date, age, religion, visit type","Visit category breakdown","Consultation and category columns","Patient classification data","Extended record set"]'>
+            <img class="gallery-thumb" src="images/rawdata/1.png" alt="Raw data records" loading="lazy" />
+            <img class="gallery-thumb" src="images/rawdata/2.png" alt="Visit breakdown" loading="lazy" />
+            <div class="gallery-more">
+              <img class="gallery-thumb" src="images/rawdata/3.png" alt="Consultation data" loading="lazy" />
+              <span class="gallery-more-badge">+3</span>
+            </div>
+          </div>
+
+          <p class="project-desc">Batch extraction and structuring of raw patient records from a web-based health information system. Data cleaned and transformed into structured Excel sheets ready for pivot analysis and KPI reporting across all branches.</p>
+          <div class="project-tech">
+            <!-- <span>Python</span> -->
+            <!-- <span>Selenium</span> -->
+            <span>ETL</span>
+            <span>Excel</span>
+            <span>Data Cleaning</span>
+          </div>
+          <div class="project-links">
+            <span class="project-note">📁 Available on request</span>
+          </div>
+        </div>
+
+        <!-- CARD 4: Augere Rentals (featured) -->
         <div class="project-card featured" data-category="dev">
           <div class="project-tag tag-dev">Web Development</div>
           <div class="featured-label">🔥 Active Project</div>
           <h3 class="project-title">Augere Rentals — Rental Property Platform</h3>
+
+          <!-- Gallery -->
+          <div class="project-gallery"
+               data-gallery="augere"
+               data-images='["images/augere/1.png","images/augere/2.png","images/augere/3.png","images/augere/4.png"]'
+               data-captions='["Augere Rentals — home page","Property listing view","Property detail page","Admin / management view"]'>
+            <img class="gallery-thumb" src="images/augere/1.png" alt="Augere Rentals home" loading="lazy" />
+            <img class="gallery-thumb" src="images/augere/2.png" alt="Property listings" loading="lazy" />
+            <div class="gallery-more">
+              <img class="gallery-thumb" src="images/augere/3.png" alt="Property detail" loading="lazy" />
+              <span class="gallery-more-badge">+2</span>
+            </div>
+          </div>
+
           <p class="project-desc">A full Django-based rental property web application with property listings, detail views, media handling, template inheritance, and URL routing. Built as part of an 18-month full-stack development roadmap.</p>
           <div class="project-tech">
             <span>Python</span>
@@ -161,10 +466,10 @@
           <div class="project-links">
             <a href="#" class="proj-link">In Progress →</a>
             <a href="#" class="proj-link">GitHub →</a>
-            <!-- <a href="#" class="proj-link">Live Demo →</a> -->
           </div>
         </div>
 
+        <!-- CARD 5: Portfolio Website -->
         <div class="project-card" data-category="dev">
           <div class="project-tag tag-dev">Web Development</div>
           <h3 class="project-title">Developer Portfolio Website</h3>
@@ -180,6 +485,7 @@
           </div>
         </div>
 
+        <!-- CARD 6: Executive Documents -->
         <div class="project-card" data-category="va">
           <div class="project-tag tag-va">Virtual Assistant</div>
           <h3 class="project-title">Executive Document Production</h3>
@@ -195,6 +501,7 @@
           </div>
         </div>
 
+        <!-- CARD 7: Academic Editing -->
         <div class="project-card" data-category="va">
           <div class="project-tag tag-va">Virtual Assistant</div>
           <h3 class="project-title">Academic Research Editing</h3>
@@ -286,8 +593,8 @@
               <div class="timeline-dot"></div>
               <div class="timeline-content">
                 <span class="timeline-date">2026 – Present</span>
-                <h4>Data Analytics Assistant Intern</h4>
-                <p class="timeline-org">Lily Hospitals Ltd</p>
+                <h4>Assistant Data Analyst</h4>
+                <p class="timeline-org">Leading Multi-Branch Healthcare Group</p>
                 <ul class="timeline-bullets">
                   <li>Multi-branch healthcare performance reporting (7+ branches)</li>
                   <li>YoY, YTD & trailing period comparisons</li>
@@ -328,7 +635,7 @@
               <div class="timeline-dot"></div>
               <div class="timeline-content">
                 <span class="timeline-date">2023 – 2024</span>
-                <h4>Secondary School Teacher</h4>
+                <h4>College Teacher</h4>
                 <p class="timeline-org">Secondary School, Nigeria</p>
                 <ul class="timeline-bullets">
                   <li>Core subject instruction & student record management</li>
@@ -408,7 +715,7 @@
       <h2 class="section-title">Let's Work Together</h2>
       <div class="contact-grid">
         <div class="contact-info">
-          <p class="contact-intro">I'm available for freelance analytics projects, virtual assistant roles, technical support contracts, and web development work. Based in Delta State — working globally.</p>
+          <p class="contact-intro">I'm available for freelance analytics projects, Data Entry, virtual assistant roles, technical support contracts, and web development work. Based in Delta State — working globally.</p>
           <div class="contact-items">
             <div class="contact-item">
               <span class="contact-icon">📍</span>
@@ -465,7 +772,7 @@
     <div class="container">
       <div class="footer-inner">
         <p class="footer-logo">CAA<span class="accent">.</span></p>
-        <p class="footer-copy">© 2025 Chikezie Augustine Agu. Built with HTML, CSS & JavaScript.</p>
+        <p class="footer-copy">© 2026 Chikezie Augustine Agu. Built with HTML, CSS & JavaScript.</p>
         <div class="footer-links">
           <a href="#about">About</a>
           <a href="#projects">Projects</a>
@@ -477,5 +784,73 @@
   </footer>
 
   <script src="script.js"></script>
+  <script>
+    /* ─── GALLERY LIGHTBOX ───────────────────────────────────────────────── */
+    const lb        = document.getElementById('lightbox');
+    const lbImg     = document.getElementById('lb-img');
+    const lbCounter = document.getElementById('lb-counter');
+    const lbCaption = document.getElementById('lb-caption');
+    const lbClose   = document.getElementById('lb-close');
+    const lbPrev    = document.getElementById('lb-prev');
+    const lbNext    = document.getElementById('lb-next');
+
+    let currentImages   = [];
+    let currentCaptions = [];
+    let currentIndex    = 0;
+
+    function openLightbox(images, captions, index) {
+      currentImages   = images;
+      currentCaptions = captions;
+      currentIndex    = index;
+      showSlide(currentIndex);
+      lb.classList.add('open');
+      document.body.style.overflow = 'hidden';
+    }
+
+    function showSlide(i) {
+      lbImg.src       = currentImages[i];
+      lbImg.alt       = currentCaptions[i] || '';
+      lbCounter.textContent = `${i + 1} / ${currentImages.length}`;
+      lbCaption.textContent  = currentCaptions[i] || '';
+    }
+
+    function closeLightbox() {
+      lb.classList.remove('open');
+      document.body.style.overflow = '';
+      lbImg.src = '';
+    }
+
+    lbClose.addEventListener('click', closeLightbox);
+    lb.addEventListener('click', e => { if (e.target === lb) closeLightbox(); });
+
+    lbPrev.addEventListener('click', () => {
+      currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length;
+      showSlide(currentIndex);
+    });
+
+    lbNext.addEventListener('click', () => {
+      currentIndex = (currentIndex + 1) % currentImages.length;
+      showSlide(currentIndex);
+    });
+
+    document.addEventListener('keydown', e => {
+      if (!lb.classList.contains('open')) return;
+      if (e.key === 'Escape')     closeLightbox();
+      if (e.key === 'ArrowRight') { currentIndex = (currentIndex + 1) % currentImages.length; showSlide(currentIndex); }
+      if (e.key === 'ArrowLeft')  { currentIndex = (currentIndex - 1 + currentImages.length) % currentImages.length; showSlide(currentIndex); }
+    });
+
+    // Wire up all gallery thumbnails
+    document.querySelectorAll('.project-gallery').forEach(gallery => {
+      const images   = JSON.parse(gallery.dataset.images   || '[]');
+      const captions = JSON.parse(gallery.dataset.captions || '[]');
+      gallery.querySelectorAll('.gallery-thumb').forEach((thumb, i) => {
+        thumb.addEventListener('click', () => openLightbox(images, captions, i));
+      });
+      // "more" badge also opens at index 2
+      const moreBadge = gallery.querySelector('.gallery-more-badge');
+      if (moreBadge) moreBadge.addEventListener('click', () => openLightbox(images, captions, 2));
+    });
+  </script>
 </body>
 </html>
